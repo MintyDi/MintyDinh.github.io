@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking | Snazzy Paws Grooming</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Snazzy Paws Grooming</h1>
+
+  <nav aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="tip.html">Tips</a>
+    <a href="booking.html">Booking</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main class="booking-page">
+
+  <h2 class="page-title">Booking</h2>
+  <p class="opening-hours">Opening hours: Mon – Sat, 9am – 5pm</p>
+
+  <form class="booking-form">
+
+    <!-- Row 1 -->
+    <div class="form-group">
+      <label for="owner">Owner:</label>
+      <input type="text" id="owner" name="owner">
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone:</label>
+      <input type="tel" id="phone">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email">
+    </div>
+
+    <!-- Row 2 -->
+    <div class="form-group">
+      <label for="petname">Pet Name:</label>
+      <input type="text" id="petname" name="petname">
+    </div>
+
+    <div class="form-group">
+      <label for="age">Pet Age:</label>
+      <input type="number" id="age">
+    </div>
+
+    <div class="form-group">
+      <label for="breed">Breed (optional):</label>
+      <input type="text" id="breed">
+    </div>
+
+    <!-- Row 3 -->
+    <div class="form-group">
+      <label for="service">Service:</label>
+      <select id="service" name="service">
+        <option>Bath and Brush</option>
+        <option>Haircut</option>
+        <option>Full Grooming</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="datetime">Date / Time:</label>
+      <input type="datetime-local" id="datetime">
+    </div>
+
+    <div class="form-group">
+      <label for="staff">Staff (optional):</label>
+      <select id="staff">
+        <option>No preference</option>
+        <option>Staff A</option>
+        <option>Staff B</option>
+      </select>
+    </div>
+
+    <!-- Row 3 -->
+
+    <div class="form-group">
+      <label for="voucher">Gift voucher:</label>
+      <input type="text" id="voucher">
+    </div>
+
+    <div class="form-group">
+      <label for="vetid">Vet clinic ID (referral):</label>
+      <input type="text" id="vetid">
+    </div>
+
+    <div class="form-group">
+      <label for="vetcase">Vet case number (referral):</label>
+      <input type="text" id="vetcase">
+    </div>
+
+    <div class="form-group">
+      <label for="note">Note (optional):</label>
+      <textarea id="note"></textarea>
+    </div>
+
+  </form>
+  
+    <!-- Submit -->
+    <div class="form-submit">
+      <button type="submit">Submit</button>
+    </div>
+
+</main>
+
+<footer>
+  <p><strong>Opening Hours:</strong> Monday – Saturday, 9am – 5pm</p>
+  <p><strong>Address:</strong> 123 Grooming Street, Hamilton, NZ </p>
+  <p><strong>Phone:</strong> 021 123 4567 </p>
+  <p><strong>Email:</strong> info@snazzypawsgrooming.co.nz</p>
+</footer>
+
+</body>
+</html>
