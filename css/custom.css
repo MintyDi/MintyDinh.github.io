@@ -784,13 +784,19 @@ footer a:hover {
 /* ================= BACK TO TOP BUTTON ================= */
 
 .top-button {
-    display: none;
     position: fixed;
     right: 25px;
     bottom: 25px;
 
     width: 45px;
     height: 45px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0;
+    margin: 0;
 
     border: none;
     border-radius: 50%;
@@ -799,8 +805,16 @@ footer a:hover {
     color: white;
 
     font-size: 20px;
+    line-height: 1;
 
+    text-decoration: none;
     cursor: pointer;
+}
+
+.top-button i {
+    display: block;
+    margin: 0;
+    padding: 0;
 }
 
 /* ================= ABOUT AND HELP ================= */

@@ -11,7 +11,7 @@ var topButton = document.querySelector("#topButton");
 if (topButton) {
     window.addEventListener("scroll", function () {
         if (window.scrollY > 300) {
-            topButton.style.display = "block";
+            topButton.style.display = "flex";
         } else {
             topButton.style.display = "none";
         }
