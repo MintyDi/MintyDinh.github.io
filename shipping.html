@@ -135,14 +135,14 @@
                             <!-- Country and city -->
                             <div class="row">
                                 <div class="col-12 col-md-6 mb-3">
-                                    <select class="form-select">
-                                        <option>Country</option>
-                                        <option>New Zealand</option>
-                                        <option>Australia</option>
-                                        <option>Other</option>
+                                    <select id="country" name="country" class="form-select" required>
+                                        <option value="">Select Country</option>
+                                        <option value="New Zealand">New Zealand</option>
+                                        <option value="Australia">Australia</option>
+                                        <option value="Other">Other</option>
                                     </select>
                                 </div>
-
+                        
                                 <div class="col-12 col-md-6 mb-3">
                                     <input  type="text"
                                             class="form-control"
@@ -213,10 +213,9 @@
                                 class="main-button">
                                     Back
                                 </a>
-                                <a href="payment.html"
-                                class="main-button">
+                                <button type="submit" class="main-button">
                                     Next
-                                </a>
+                                </button>
                                 <a href="shop.html"
                                 class="cancel-button">
                                     Cancel

@@ -197,37 +197,32 @@ if (shippingSubtotal && shippingPrice && shippingTotal) {
     updateShipping();
 }
 
-// ================= SHIPPING FORM VALIDATION =================
-
-var shippingForm =
-    document.querySelector("#shippingForm");
-
+var shippingForm = document.querySelector("#shippingForm");
 
 if (shippingForm) {
-
     shippingForm.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-        var postcode =
-            document.querySelector("#postcode");
+        var country = document.querySelector("#country").value;
+        var postcode = document.querySelector("#postcode").value.trim();
+        var phone = document.querySelector("#phone").value.trim();
 
-        var phone =
-            document.querySelector("#phone");
-
-
-        // Check postcode
-        if (!/^\d{4}$/.test(postcode.value)) {
-            alert("Please enter a valid 4 digit postcode.");
-            event.preventDefault();
+        if (country === "") {
+            alert("Please select your country.");
+            return;
+        }
+        if (!/^\d{4}$/.test(postcode)) {
+            alert("Please enter a valid 4-digit postcode.");
             return;
         }
 
-
-        // Check phone number
-        if (!/^[0-9+\-\s()]{7,15}$/.test(phone.value)) {
+        if (!/^[0-9+\-\s()]{7,15}$/.test(phone)) {
             alert("Please enter a valid phone number.");
-            event.preventDefault();
             return;
         }
+
+        // If all fields are valid, go to the payment page
+        window.location.href = "payment.html";
     });
 }
 
