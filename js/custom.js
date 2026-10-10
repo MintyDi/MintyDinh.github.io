@@ -197,6 +197,8 @@ if (shippingSubtotal && shippingPrice && shippingTotal) {
     updateShipping();
 }
 
+// ================= SHIPPING FORM VALIDATION =================
+
 var shippingForm = document.querySelector("#shippingForm");
 
 if (shippingForm) {
