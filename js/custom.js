@@ -30,7 +30,7 @@ if (topButton) {
 // ================= CART TOTAL AND SHIPPING =================
 
 var quantityInputs =
-    document.querySelectorAll(".quantity");
+    document.querySelectorAll(".cart-product .quantity");
 var cartSubtotal =
     document.querySelector("#cartSubtotal");
 var cartShipping =
@@ -109,71 +109,92 @@ if (quantityInputs.length > 0) {
 
 // ================= SHIPPING PAGE =================
 
-var shippingSubtotal =
-    document.querySelector("#cartSubtotal");
+var shippingSubtotal = document.querySelector("#cartSubtotal");
+var shippingPrice = document.querySelector("#shippingPrice");
+var shippingTax = document.querySelector("#shippingTax");
+var shippingTotal = document.querySelector("#shippingTotal");
+var shippingMessage = document.querySelector("#shippingMessage");
 
-var shippingPrice =
-    document.querySelector("#shippingPrice");
+var standardShipping = document.querySelector("#standardShipping");
+var nextDayShipping = document.querySelector("#nextDayShipping");
 
-var shippingTax =
-    document.querySelector("#shippingTax");
+function updateShipping() {
 
-var shippingTotal =
-    document.querySelector("#shippingTotal");
+    // Get the subtotal and tax from localStorage
+    var subtotal = Number(localStorage.getItem("cartSubtotal")) || 0;
+    var tax = Number(localStorage.getItem("cartTax")) || 13;
 
-var shippingMessage =
-    document.querySelector("#shippingMessage");
+    var shipping = 20;
 
-if (shippingSubtotal && shippingPrice && shippingTotal) {
-    // Get information from Cart page
-    var subtotal =
-        Number(localStorage.getItem("cartSubtotal"));
-    var shipping =
-        Number(localStorage.getItem("cartShipping"));
-    var tax =
-        Number(localStorage.getItem("cartTax"));
-    var finalTotal =
-        Number(localStorage.getItem("cartFinalTotal"));
+    // Standard Shipping
+    if (standardShipping && standardShipping.checked) {
 
-    // Check that the values exist
-    if (isNaN(subtotal)) {
-        subtotal = 0;
+        if (subtotal > 600) {
+            shipping = 0;
+        } else {
+            shipping = 20;
+        }
+
+        if (shippingMessage) {
+            if (shipping === 0) {
+                shippingMessage.textContent =
+                    "Congratulations! You qualify for free standard shipping.";
+            } else {
+                shippingMessage.textContent =
+                    "Spend more than $600 to receive free standard shipping.";
+            }
+        }
     }
-    if (isNaN(shipping)) {
+
+    // Next Day Delivery always costs $20
+    if (nextDayShipping && nextDayShipping.checked) {
         shipping = 20;
-    }
-    if (isNaN(tax)) {
-        tax = 13;
-    }
-    if (isNaN(finalTotal)) {
-        finalTotal = subtotal + shipping + tax;
+
+        if (shippingMessage) {
+            shippingMessage.textContent =
+                "Next Day Delivery costs $20.";
+        }
     }
 
-    // Update subtotal
-    shippingSubtotal.textContent =
-        "$" + subtotal;
+    // Calculate the final total
+    var finalTotal = subtotal + shipping + tax;
 
-    // Update shipping
-    if (shipping === 0) {
-        shippingPrice.textContent = "FREE";
-        shippingMessage.textContent =
-            "Congratulations! You qualify for free shipping.";
-    } else {
+    // Save the selected shipping and updated total
+    localStorage.setItem("cartShipping", shipping);
+    localStorage.setItem("cartTax", tax);
+    localStorage.setItem("cartFinalTotal", finalTotal);
+
+    // Update the shipping summary
+    if (shippingSubtotal) {
+        shippingSubtotal.textContent = "$" + subtotal.toFixed(2);
+    }
+
+    if (shippingPrice) {
         shippingPrice.textContent =
-            "$" + shipping;
-        shippingMessage.textContent =
-            "Spend more than $600 to receive free shipping.";
+            shipping === 0 ? "FREE" : "$" + shipping.toFixed(2);
     }
 
-    // Update tax
     if (shippingTax) {
-        shippingTax.textContent =
-            "$" + tax;
+        shippingTax.textContent = "$" + tax.toFixed(2);
     }
 
-    // Update final total
-    shippingTotal.textContent =
-        "$" + finalTotal;
+    if (shippingTotal) {
+        shippingTotal.textContent = "$" + finalTotal.toFixed(2);
+    }
+}
+
+// Recalculate when the customer changes delivery options
+if (standardShipping) {
+    standardShipping.addEventListener("change", updateShipping);
+}
+
+if (nextDayShipping) {
+    nextDayShipping.addEventListener("change", updateShipping);
+}
+
+// Calculate the summary when the Shipping page opens
+if (shippingSubtotal && shippingPrice && shippingTotal) {
+    updateShipping();
 }
 
 // ================= SHIPPING FORM VALIDATION =================
